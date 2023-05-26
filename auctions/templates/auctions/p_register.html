@@ -1,0 +1,168 @@
+{% include "auctions/layout.html" %}
+
+<br><br>
+<br><br>
+
+    <h2>Register Here</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Username" required>
+        </div>
+        <script>
+  // Get the input element
+  var usernameInput = document.querySelector('input[name="username"]');
+
+  // Add event listener for input validation
+  usernameInput.addEventListener('input', function() {
+    // Get the input value
+    var username = usernameInput.value.trim();
+
+    // Regular expression pattern for alphanumeric characters
+    var alphanumericPattern = /^[a-zA-Z0-9]+$/;
+
+    // Validate the input
+    if (username.length === 0) {
+      usernameInput.setCustomValidity('Username is required.');
+    } else if (!alphanumericPattern.test(username)) {
+      usernameInput.setCustomValidity('Username can only contain alphanumeric characters.');
+    } else if (username.length < 3 || username.length > 20) {
+      usernameInput.setCustomValidity('Username must be between 3 and 20 characters long.');
+    } else {
+      usernameInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="" name="mobilenumber" placeholder="Mobile Number" required>
+        </div>
+<script>
+  // Get the input element
+  var mobileNumberInput = document.querySelector('input[name="mobilenumber"]');
+
+  // Add event listener for input validation
+  mobileNumberInput.addEventListener('input', function() {
+    // Get the input value
+    var mobileNumber = mobileNumberInput.value.trim();
+
+    // Regular expression pattern for Indian mobile number format
+    var indianMobileNumberPattern = /^[6-9]\d{9}$/;
+
+    // Validate the input
+    if (mobileNumber.length === 0) {
+      mobileNumberInput.setCustomValidity('Mobile number is required.');
+    } else if (!indianMobileNumberPattern.test(mobileNumber)) {
+      mobileNumberInput.setCustomValidity('Invalid mobile number. Please enter a valid Indian mobile number.');
+    } else {
+      mobileNumberInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="Integer" name="age" placeholder="Age" required>
+        </div>
+        <script>
+  // Get the input element
+  var ageInput = document.querySelector('input[name="age"]');
+
+  // Add event listener for input validation
+  ageInput.addEventListener('input', function() {
+    // Get the input value
+    var age = ageInput.value.trim();
+
+    // Validate the input
+    if (age.length === 0) {
+      ageInput.setCustomValidity('Age is required.');
+    } else if (isNaN(age) || !Number.isInteger(parseFloat(age))) {
+      ageInput.setCustomValidity('Invalid age. Please enter a valid integer value.');
+    } else if (age < 10 || age > 99) {
+      ageInput.setCustomValidity('Age must be between 10 and 99.');
+    } else {
+      ageInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="String" name="currentclub" placeholder="Current Club" required>
+        </div>
+        <script>
+  // Get the input element
+  var currentClubInput = document.querySelector('input[name="currentclub"]');
+
+  // Add event listener for input validation
+  currentClubInput.addEventListener('input', function() {
+    // Get the input value
+    var currentClub = currentClubInput.value.trim();
+
+    // Validate the input
+    if (currentClub.length === 0) {
+      currentClubInput.setCustomValidity('Current club is required.');
+    } else if (currentClub.length < 3 || currentClub.length > 50) {
+      currentClubInput.setCustomValidity('Current club must be between 3 and 50 characters long.');
+    } else {
+      currentClubInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="file" name="image_url" accept=".jpg, .jpeg" required>
+        </div>
+        <script>
+  // Get the input element
+  var imageInput = document.querySelector('input[name="image_url"]');
+
+  // Add event listener for input validation
+  imageInput.addEventListener('change', function() {
+    // Get the selected file
+    var file = imageInput.files[0];
+
+    // Validate the input
+    if (!file) {
+      imageInput.setCustomValidity('Image file is required.');
+    } else {
+      var fileName = file.name.toLowerCase();
+      var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+      if (fileExtension !== 'jpg' and fileExtension!=='jpeg') {
+        imageInput.setCustomValidity('Invalid file format. Please select a JPG,jpeg file.');
+      } else {
+        imageInput.setCustomValidity('');
+      }
+    }
+  });
+</script>
+
+        <div class="form-group">
+             <select class="form-control" name="position"  required>
+                 <option value="Position">Position</option>
+                 <option value="Forwards">Forwards</option>
+                 <option value="Midfielders">Midfielders</option>
+                 <option value="Defenders">Defenders</option>
+                 <option value="Goalkeepers">Goalkeepers</option>
+
+                </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password" required>
+
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="conf" placeholder="Confirm Password" required>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Register">
+    </form>
+<h4>{{msg}}</h4>
+    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+

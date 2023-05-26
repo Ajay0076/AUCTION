@@ -1,0 +1,265 @@
+{% include 'auctions/layout.html' %}
+
+    <div class="hero overlay" style="background-image: url('static/auctions/images/bg_3.jpg');">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5 ml-auto">
+            <h1 class="text-white">Auction Event</h1>
+
+            <div id="date-countdown"></div>
+            <p>
+
+              <a href="#" class="more light">Learn More</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+
+        <style>
+            .post-entry {
+              width: 100%;
+              height: 300px; /* Adjust the desired height for the cards */
+              text-align: center;
+              overflow: hidden;
+              margin-bottom: 20px; /* Add desired margin-bottom value for spacing */
+            }
+
+            .post-entry img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            .author {
+              margin-top: 10px;
+            }
+
+            .participate-button {
+              display: inline-block;
+              padding: 5px 10px;
+              background-color: #337ab7;
+              color: #fff;
+              text-decoration: none;
+              border-radius: 5px;
+            }
+            </style>
+
+            <div class="container">
+              <div class="latest-news">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12 title-section">
+                      <h2 class="heading">Players</h2>
+                    </div>
+                  </div>
+                  <div class="row">
+                    {% for i in a %}
+                    <div class="col-md-4">
+
+                      <div class="post-entry">
+                          <img src="{{ i.image_url.url }}" alt="Image" class="img-fluid">
+
+                        <div class="caption">
+                          <div class="caption-inner">
+                        <h3 class="mb-3">{{ i.username }}</h3>
+                            <div class="author d-flex align-items-center">
+                              <div class="img mb-2 mr-3">
+
+                              </div>
+                              <div class="text">
+                                <h4>Category:</h4>
+                                <span>{{i.position}}&bullet; </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <h4>{{msg}}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+      <div class="row">
+        <div class="col-lg-12">
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="site-section bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="widget-next-match">
+              <div class="widget-title">
+                <h3>Next Match</h3>
+              </div>
+              <div class="widget-body mb-3">
+                <div class="widget-vs">
+                  <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                    <div class="team-1 text-center">
+                      <img src="static/auctions/images/logo_1.png" alt="Image">
+                      <h3>New Bridge FC</h3>
+                    </div>
+                    <div>
+                      <span class="vs"><span>VS</span></span>
+                    </div>
+                    <div class="team-2 text-center">
+                      <img src="static/auctions/images/logo_2.png" alt="Image">
+                      <h3>Indiana</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center widget-vs-contents mb-4">
+                <h4>vaikom League Cup</h4>
+                <p class="mb-5">
+                  <span class="d-block">December 20th, 2020</span>
+                  <span class="d-block">9:30 AM GMT+0</span>
+                  <strong class="text-primary">Vaikom Beach Ground</strong>
+                </p>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+
+            <div class="widget-next-match">
+              <table class="table custom-table">
+                <thead>
+                  <tr>
+                    <th>P</th>
+                    <th>Team</th>
+                    <th>Mts</th>
+                    <th>Win</th>
+                    <th>Draw</th>
+                    <th>Lost</th>
+                    <th>PTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong class="text-white">Nalanda F C</strong></td>
+                    <td>13</td>
+                    <td>9</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>29</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong class="text-white">Indiana FC</strong></td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>27</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong class="text-white">New Bridge</strong></td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>26</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><strong class="text-white">Soccer FC</strong></td>
+                    <td>13</td>
+                    <td>6</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>22</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong class="text-white">Flemengo</strong></td>
+                    <td>14</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>7</td>
+                    <td>19</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><strong class="text-white">Mythri FC</strong></td>
+                    <td>13</td>
+                    <td>5</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><strong class="text-white">Red Devils</strong></td>
+                    <td>13</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><strong class="text-white">Leeds FC</strong></td>
+                    <td>12</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>17</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- .site-section -->
+
+
+
+
+
+
+
+    <footer class="footer-section">
+      <div class="container">
+
+
+
+
+
+
+        </div>
+
+
+
+
+      </div>
+    </footer>
+
+
+
+  </div>
+  <!-- .site-wrap -->
+
+  

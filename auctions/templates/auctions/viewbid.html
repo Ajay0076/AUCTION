@@ -1,0 +1,80 @@
+{% include 'auctions/playerbase.html' %}
+<br><br><br>
+
+    <center><h4>My Current Bidding Status</h4></center>
+
+    <div id="activelist">
+        {% for list in a %}
+        {% if forloop.first %}
+    <div class = "card">
+        <a class="title">{{list.playername.username}}</a>
+        <a class= "cat">{{list.playername.position}}</a>
+
+            <img src="{{ list.playername.image_url.url }}" class="list_img">
+
+
+        <p class="desc">Current Club:{{ list.playername.currentclub }}</p>
+        {% for bid in a %}
+        {% if forloop.last %}
+            <a class="c_price">Base Price: {{ bid.amount }} $</a>
+        {% endif %}
+    {% endfor %}
+    
+    
+    
+    <a href="/accept/{{list.clubname.id}}/" class="btn btn-primary">Accept Offer</a>
+
+        {{msg}}
+    </div>  
+    {% endif %}
+    {% endfor %}
+    </div>
+      
+<style>
+p{
+    padding: 1vw;
+}
+#activelist{
+    margin-top: 4vw;
+    grid-gap: 2vw;
+    display:grid;
+    width: 90%;
+    margin-left: 5%;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.card{
+    display: grid;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin-left: 5%;
+    color:rgb(250, 189, 22);
+    background-color: rgb(86, 130, 123);
+}
+
+img{
+        width: 100%;
+        align-items: first baseline;
+    }
+
+.title{
+
+    font-size: 2vw;
+    font-weight: bold;
+    color: darkblue;
+}
+.c_price{
+    font-weight: bold;
+}
+
+
+</style>
+
+
+
+
+
+

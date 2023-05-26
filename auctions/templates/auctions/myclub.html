@@ -1,0 +1,70 @@
+{% include 'auctions/playerbase.html' %}
+<br><br><br>
+
+    <center><h4>My Current Club</h4></center>
+
+    <div id="activelist">
+        {% for list in a %}
+        {% if forloop.first %}
+    <div class = "card">
+        <a class="title">{{list.clubname.clubname}}</a>
+        <a class= "cat">{{list.clubname.manager}}</a>
+
+            <img src="{{ list.clubname.logo.url }}" class="list_img">
+
+    
+
+        {{msg}}
+    </div>  
+    {% endif %}
+    {% endfor %}
+    </div>
+      
+<style>
+p{
+    padding: 1vw;
+}
+#activelist{
+    margin-top: 4vw;
+    grid-gap: 2vw;
+    display:grid;
+    width: 90%;
+    margin-left: 5%;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.card{
+    display: grid;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin-left: 5%;
+    color:rgb(250, 189, 22);
+    background-color: rgb(86, 130, 123);
+}
+
+img{
+        width: 100%;
+        align-items: first baseline;
+    }
+
+.title{
+
+    font-size: 2vw;
+    font-weight: bold;
+    color: darkblue;
+}
+.c_price{
+    font-weight: bold;
+}
+
+
+</style>
+
+
+
+
+
+

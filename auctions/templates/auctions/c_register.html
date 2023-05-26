@@ -1,0 +1,137 @@
+{% include "auctions/layout.html" %}
+
+<br><br>
+<br><br>
+    <h2>Register Here</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'c_register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="clubname" placeholder="Clubname" required>
+        </div>
+        <script>
+  // Get the input element
+  var clubnameInput = document.querySelector('input[name="clubname"]');
+
+  // Add event listener for input validation
+  clubnameInput.addEventListener('input', function() {
+    // Get the input value
+    var clubname = clubnameInput.value.trim();
+
+    // Regular expression pattern for alphanumeric characters
+    var alphanumericPattern = /^[a-zA-Z0-9]+$/;
+
+    // Validate the input
+    if (clubname.length === 0) {
+      clubnameInput.setCustomValidity('Clubname is required.');
+    } else if (!alphanumericPattern.test(clubname)) {
+      clubnameInput.setCustomValidity('Clubname can only contain alphanumeric characters.');
+    } else if (clubname.length < 3 || clubname.length > 20) {
+      clubnameInput.setCustomValidity('Clubname must be between 3 and 20 characters long.');
+    } else {
+      clubnameInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+    <input class="form-control" type="text" name="manager" placeholder="Manager" required>
+    <small id="managerError" class="text-danger"></small>
+</div>
+
+<script>
+    var managerInput = document.querySelector('input[name="manager"]');
+    var managerError = document.getElementById('managerError');
+
+    managerInput.addEventListener('input', function() {
+        var managerValue = managerInput.value.trim();
+
+        if (managerValue.length === 0) {
+            managerError.textContent = 'Manager field is required';
+            managerInput.classList.add('is-invalid');
+        } else if (!/^[a-zA-Z\s]+$/.test(managerValue)) {
+            managerError.textContent = 'Manager field should only contain letters and spaces';
+            managerInput.classList.add('is-invalid');
+        } else {
+            managerError.textContent = '';
+            managerInput.classList.remove('is-invalid');
+        }
+    });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="contactNo" placeholder="Mobile No" required>
+        </div>
+<script>
+  // Get the input element
+  var contactNoInput = document.querySelector('input[name="contactNo"]');
+
+  // Add event listener for input validation
+  contactNoInput.addEventListener('input', function() {
+    // Get the input value
+    var contactNo = contactNoInput.value.trim();
+
+    // Regular expression pattern for Indian mobile number format
+    var indianMobileNumberPattern = /^[6-9]\d{9}$/;
+
+    // Validate the input
+    if (contactNo.length === 0) {
+      contactNoInput.setCustomValidity('Mobile number is required.');
+    } else if (!indianMobileNumberPattern.test(contactNo)) {
+      contactNoInput.setCustomValidity('Invalid mobile number. Please enter a valid Indian mobile number.');
+    } else {
+      contactNoInput.setCustomValidity('');
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="place" placeholder="Place" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="file" name="logo" accept=".jpg" required>
+        </div>
+        <script>
+  // Get the input element
+  var logoInput = document.querySelector('input[name="logo"]');
+
+  // Add event listener for input validation
+  logoInput.addEventListener('change', function() {
+    // Get the selected file
+    var file = logoInput.files[0];
+
+    // Validate the input
+    if (!file) {
+      logoInput.setCustomValidity('Logo file is required.');
+    } else {
+      var fileName = file.name.toLowerCase();
+      var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+      if (fileExtension !== 'jpg') {
+        logoInput.setCustomValidity('Invalid file format. Please select a JPG file.');
+      } else {
+        logoInput.setCustomValidity('');
+      }
+    }
+  });
+</script>
+
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password" required>
+
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="conf" placeholder="Confirm Password" required>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Register">
+
+    </form>
+Already Registered <a href="{% url 'login' %}">Log In here.</a>
+

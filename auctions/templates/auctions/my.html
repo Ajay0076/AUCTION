@@ -1,0 +1,70 @@
+{% include 'auctions/playerbase.html' %}
+
+<style>
+    .post-entry {
+      width: 100%;
+      height: 300px; /* Adjust the desired height for the cards */
+      text-align: center;
+      overflow: hidden;
+      margin-bottom: 20px; /* Add desired margin-bottom value for spacing */
+    }
+    
+    .post-entry img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author {
+      margin-top: 10px;
+    }
+    
+    .participate-button {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #337ab7;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    </style>
+    
+    <div class="container">
+      <div class="latest-news">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 title-section">
+              <h2 class="heading">Registered Auctions</h2>
+            </div>
+          </div>
+          <div class="row">
+            {% for i in a %}
+            <div class="col-md-4">
+              
+              <div class="post-entry">
+                  <img src="{{ i.auction.image_url.url }}" alt="Image" class="img-fluid">
+               
+                <div class="caption">
+                  <div class="caption-inner">
+                    <a href="" onclick="return confirm('Are you sure to participate ?')"> <h3 class="mb-3">{{ i.auction.title }}</h3> </a>
+                    <div class="author d-flex align-items-center">
+                      <div class="img mb-2 mr-3">
+                        <img src="static/auctions/images/person_1.jpg" alt="">
+                      </div>
+                      <div class="text">
+                        <h4>Last Date To Participate:</h4>
+                        <span>{{i.auction.deadline}}&bullet; Sports</span>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            {% endfor %}
+            <h4>{{msg}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    

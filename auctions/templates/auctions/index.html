@@ -1,0 +1,73 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+     {% if messages %}
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    <div id="activelist">
+    {% for list in a1 %}
+    <div class = "card">
+        <a class="title">{{list.username}}</a>
+        <a class= "cat">{{list.position}}</a>
+
+            <img src="{{ list.image_url.url }}" class="list_img">
+
+
+        <p class="desc">{{ list.currentclub }}</p>
+        <a><a class="c_price">Starting Bid: </a> {{ list.starting_bid }} $ </a>
+        <a href="">View Bid</a>
+    </div>  
+    {% endfor %}
+    </div>
+      
+<style>
+p{
+    padding: 1vw;
+}
+#activelist{
+    margin-top: 4vw;
+    grid-gap: 2vw;
+    display:grid;
+    width: 90%;
+    margin-left: 5%;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.card{
+    display: grid;
+    grid-template-rows: repeat(auto,1fr);
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin-left: 5%;
+    color:rgb(250, 189, 22);
+    background-color: rgb(86, 130, 123);
+}
+
+img{
+        width: 100%;
+        align-items: first baseline;
+    }
+
+.title{
+
+    font-size: 2vw;
+    font-weight: bold;
+    color: darkblue;
+}
+.c_price{
+    font-weight: bold;
+}
+
+
+</style>
+
+
+
+{% endblock %}
+
+

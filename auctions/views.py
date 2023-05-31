@@ -166,8 +166,8 @@ def add_bid(request, id, pid):
             if amount <= 1000:
                 msg = 'Bid amount should be greater than the base price.'
                 a = auctionreg.objects.filter(auction=id, status='Player')
-                b=bidplayer.objects.filter(auction=id)
-                context = {'a': a,'b':b, 'msg': msg}
+                b = bidplayer.objects.filter(auction=id)
+                context = {'a': a, 'b': b, 'msg': msg}
                 return render(request, 'auctions/registered.html', context)
 
             existing_bid = bidplayer.objects.filter(auction=auction_obj, playername=player).first()
@@ -179,8 +179,8 @@ def add_bid(request, id, pid):
                 if amount <= current_amount:
                     msg = 'Bid amount should be greater than the current amount.'
                     a = auctionreg.objects.filter(auction=id, status='Player')
-                    b=bidplayer.objects.filter(auction=id)
-                    context = {'a': a,'b':b, 'msg': msg}
+                    b = bidplayer.objects.filter(auction=id)
+                    context = {'a': a, 'b': b, 'msg': msg}
                     return render(request, 'auctions/registered.html', context)
 
             # Create a new bid
@@ -188,8 +188,16 @@ def add_bid(request, id, pid):
 
             msg = 'Bid added successfully.'
             a = auctionreg.objects.filter(auction=id, status='Player')
-            b=bidplayer.objects.filter(auction=id)
-            context = {'a': a,'b':b, 'msg': msg}
+            b = bidplayer.objects.filter(auction=id)
+
+            # Get the highest bid amount for each player
+            highest_bids = {}
+            for player in a:
+                highest_bid = b.filter(playername=player.playername).order_by('-amount').first()
+                if highest_bid:
+                    highest_bids[player.playername] = highest_bid.amount
+
+            context = {'a': a, 'b': b, 'msg': msg, 'highest_bids': highest_bids}
             return render(request, 'auctions/registered.html', context)
 
         except auction.DoesNotExist:
@@ -199,6 +207,7 @@ def add_bid(request, id, pid):
             return HttpResponse('Club or Player does not exist.')
     else:
         return render(request, 'auctions/addbid.html')
+
 def viewbid(request):
     id=request.session['id']
     a=bidplayer.objects.filter(playername=id)
